@@ -16,4 +16,5 @@
     <string name="notification_action_stop">Stop</string>
     <string name="notification_action_more">More</string>
     <string name="main_activity_tab_adventure_log">Adventure Log</string>
+    <string name="main_actionbar_title">%1$s, the %2$s</string>
 </resources>

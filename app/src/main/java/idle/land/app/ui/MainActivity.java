@@ -3,6 +3,7 @@ package idle.land.app.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import com.squareup.otto.Subscribe;
 import com.viewpagerindicator.TitlePageIndicator;
 import idle.land.app.R;
 import idle.land.app.logic.BusProvider;
+import idle.land.app.logic.Model.Player;
 import idle.land.app.logic.api.HeartbeatEvent;
 import idle.land.app.logic.api.HeartbeatService;
 import idle.land.app.ui.views.HeartbeatTicker;
@@ -64,8 +66,10 @@ public class MainActivity extends ActionBarActivity {
         switch(event.type)
         {
             case LOGGED_IN:
+                onNewPlayerEvent(event.player);
                 break;
             case HEARTBEAT:
+                onNewPlayerEvent(event.player);
                 break;
             case LOGGED_OUT:
                 Toast.makeText(this, getString(R.string.toast_logged_out), Toast.LENGTH_SHORT).show();
@@ -76,6 +80,14 @@ public class MainActivity extends ActionBarActivity {
                 showLogin();
                 break;
         }
+    }
+
+    void onNewPlayerEvent(Player newPlayer)
+    {
+        String title = getString(R.string.main_actionbar_title);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+            actionBar.setTitle( String.format(title, newPlayer.getName(), newPlayer.getProfessionName()) );
     }
 
 

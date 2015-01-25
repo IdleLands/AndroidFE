@@ -8,9 +8,24 @@ import java.util.List;
 public class Player {
 
     String name;
+    String professionName;
+    String gender;
+
     List<Event> recentEvents;
 
     public List<Event> getRecentEvents() {
         return recentEvents;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getProfessionName() {
+        return professionName;
+    }
+
+    public String getGender() {
+        return gender;
     }
 }
