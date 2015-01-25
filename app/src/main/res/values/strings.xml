@@ -22,4 +22,5 @@
     <string name="menu_sort_by_name">Sort by name</string>
     <string name="menu_sort_by_type">Sort by type</string>
     <string name="main_activity_tab_overview">Overview</string>
+    <string name="base_information_title">The %1$s</string>
 </resources>

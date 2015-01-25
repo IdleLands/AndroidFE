@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:text="name"
+            android:id="@+id/tvName"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:text="The ClassName"
+            android:id="@+id/tvTitle"
+            android:layout_below="@+id/tvName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:text="Small Text"
+            android:id="@+id/tvLevel"
+            android:layout_above="@+id/tvTitle"
+            android:layout_toRightOf="@+id/tvName"
+            android:layout_toEndOf="@+id/tvName"/>
+
+</RelativeLayout>

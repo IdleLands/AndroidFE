@@ -12,7 +12,11 @@
             android:layout_height="wrap_content">
 
 
-
+        <view
+                android:id="@+id/baseInformationCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="idle.land.app.ui.views.BaseInformationCard"/>
     </LinearLayout>
 
 </ScrollView>
