@@ -12,9 +12,14 @@ public class Player {
     String gender;
 
     List<Event> recentEvents;
+    List<Archievment> achievements;
 
     public List<Event> getRecentEvents() {
         return recentEvents;
+    }
+
+    public List<Archievment> getAchievements() {
+        return achievements;
     }
 
     public String getName() {

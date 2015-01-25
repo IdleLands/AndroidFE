@@ -88,7 +88,7 @@ public class AdventureLogFragment extends ListFragment {
         }
 
         /**
-         * Replaces the list of events with the new one if they differ
+         * Replaces the list of archivments with the new one if they differ
          * @return true if something changed
          */
         public boolean updateEvents(List<Event> newEvents)

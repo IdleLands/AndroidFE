@@ -90,7 +90,6 @@ public class MainActivity extends ActionBarActivity {
             actionBar.setTitle( String.format(title, newPlayer.getName(), newPlayer.getProfessionName()) );
     }
 
-
     @Override
     protected void onPause() {
         BusProvider.getInstance().unregister(this);

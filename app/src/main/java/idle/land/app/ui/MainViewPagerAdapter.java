@@ -20,16 +20,27 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return mContext.getString(R.string.main_activity_tab_adventure_log);
+        switch (position)
+        {
+            case 0: return mContext.getString(R.string.main_activity_tab_adventure_log);
+            default: return mContext.getString(R.string.main_activity_tab_archievments);
+        }
+
     }
 
     @Override
     public Fragment getItem(int position) {
-        return AdventureLogFragment.newInstance();
+        switch (position)
+        {
+            case 0:
+                return AdventureLogFragment.newInstance();
+            default:
+                return ArchievmentFragment.newInstance();
+        }
     }
 
     @Override
     public int getCount() {
-        return 1;
+        return 2;
     }
 }
