@@ -11,7 +11,7 @@
         <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="4dp"
                 android:id="@+id/frameLayout">
             <ImageView
                     android:layout_gravity="center_vertical"

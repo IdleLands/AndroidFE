@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.squareup.otto.Subscribe;
@@ -18,6 +19,7 @@ import idle.land.app.logic.api.HeartbeatEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class AdventureLogFragment extends ListFragment {
@@ -29,7 +31,16 @@ public class AdventureLogFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View v =  super.onCreateView(inflater, container, savedInstanceState);
+
+        ListView listView = (ListView) v.findViewById(android.R.id.list);
+        int margin = getResources().getDimensionPixelSize(R.dimen.default_margin);
+        listView.setPadding(margin, margin, margin, margin);
+        listView.setClipToPadding(false);
+        listView.setDivider(null);
+        listView.setDividerHeight(margin);
+
+        return v;
     }
 
     @Override
@@ -48,7 +59,20 @@ public class AdventureLogFragment extends ListFragment {
     public void onHeartbeatEvent(HeartbeatEvent event)
     {
         if(event.player != null)
-            setListAdapter(new AdventureLogAdapter(event.player.getRecentEvents()));
+        {
+            List<Event> events = event.player.getRecentEvents();
+            Collections.sort(events, new Comparator<Event>() {
+                @Override
+                public int compare(Event lhs, Event rhs) {
+                    return rhs.getCreatedAt().compareTo(lhs.getCreatedAt());
+                }
+            });
+
+            if(getListAdapter() == null)
+                setListAdapter(new AdventureLogAdapter(events));
+            else
+                ((AdventureLogAdapter) getListAdapter()).updateEvents(events);
+        }
     }
 
     class AdventureLogAdapter extends BaseAdapter
@@ -60,7 +84,22 @@ public class AdventureLogFragment extends ListFragment {
         {
             events = new ArrayList<Event>();
             events.addAll(e);
-            Collections.reverse(events);
+
+        }
+
+        /**
+         * Replaces the list of events with the new one if they differ
+         * @return true if something changed
+         */
+        public boolean updateEvents(List<Event> newEvents)
+        {
+            if(newEvents.equals(events))
+                return false;
+            events = newEvents;
+            notifyDataSetChanged();
+            if(getCount() > 0)
+                getListView().smoothScrollToPosition(0);
+            return true;
         }
 
         @Override

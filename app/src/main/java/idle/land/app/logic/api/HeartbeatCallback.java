@@ -8,6 +8,8 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import java.util.Date;
+
 /**
  * Abstract Callback class for Heartbeat methods
  * @see idle.land.app.logic.api.ApiConnection
@@ -52,7 +54,7 @@ public abstract class HeartbeatCallback implements Callback<JsonObject> {
     public void success(JsonObject jsonObject, Response response) {
         if(jsonObject.get("isSuccess").getAsBoolean() || (jsonObject.get("code").getAsInt() == 100 && response.getUrl().contains("turn") ))
         {
-            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
+            Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateDeserializer()).create();
             Player player = gson.fromJson(jsonObject.get("player"), Player.class);
             if(response.getUrl().contains("login"))
                 onLoginSuccess(player, jsonObject.get("token").getAsString());

@@ -17,4 +17,10 @@ public class Logger {
             Log.w(tag, text);
     }
 
+    public static void error(String tag, String text, Exception e)
+    {
+        if(BuildConfig.DEBUG)
+            Log.e(tag, text, e);
+    }
+
 }

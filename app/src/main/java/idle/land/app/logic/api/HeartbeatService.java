@@ -26,7 +26,7 @@ public class HeartbeatService extends Service implements Runnable {
     /**
      * time interval between heartbeats
      */
-    public static final int HEARTBEAT_INTERVAL_MILLISECONDS = 20 * 1000;
+    public static final int HEARTBEAT_INTERVAL_MILLISECONDS = 15 * 1000;
 
     /**
      * ID of the foreground statusbar notification
