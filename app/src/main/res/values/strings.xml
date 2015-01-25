@@ -1,0 +1,18 @@
+<resources >
+    <string name="app_ident" translateable="false">AndroidFE</string>
+    <string name="app_name">Idle Lands</string>
+
+    <string name="login_name_hint">Character name</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_login_button">Sign in</string>
+    <string name="login_remember_me">Remember</string>
+    <string name="login_register_button">Register</string>
+    <string name="notification_no_news">No news</string>
+    <string name="login_title">Welcome to Idle Lands!\n..........</string>
+    <string name="main_menu_settings">Settings</string>
+    <string name="main_menu_logout">Logout</string>
+    <string name="toast_logged_out">Logged out.</string>
+    <string name="toast_something_went_wrong">Something went wrong.</string>
+    <string name="notification_action_stop">Stop</string>
+    <string name="notification_action_more">More</string>
+</resources>

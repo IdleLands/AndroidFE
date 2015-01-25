@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              >
+
+    <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            android:layout_weight="0.5"
+            android:text="@string/login_title"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+    <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etLoginName"
+                android:singleLine="true"
+                android:hint="@string/login_name_hint"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/etLoginPassword"
+                android:layout_alignEnd="@+id/etLoginPassword"
+                android:layout_alignLeft="@+id/etLoginPassword"
+                android:layout_alignStart="@+id/etLoginPassword"/>
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:singleLine="true"
+                android:id="@+id/etLoginPassword"
+                android:hint="@string/login_password_hint"
+                android:layout_below="@+id/etLoginName"
+                android:layout_centerHorizontal="true"/>
+
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_remember_me"
+                android:id="@+id/cbLoginRemember"
+                android:checked="false"
+                android:layout_alignTop="@+id/btLoginLogin"
+                android:layout_alignLeft="@+id/etLoginPassword"
+                android:layout_alignStart="@+id/etLoginPassword"/>
+
+        <Button
+                android:textColor="@android:color/white"
+                android:background="@drawable/colored_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_login_button"
+                android:id="@+id/btLoginLogin"
+                android:layout_below="@+id/etLoginPassword"
+                android:layout_alignRight="@+id/etLoginPassword"
+                android:layout_alignEnd="@+id/etLoginPassword"/>
+        <Button
+                android:id="@+id/btLoginRegister"
+                android:background="@drawable/transparent_button"
+                android:textColor="@color/primary"
+                android:text="@string/login_register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btLoginLogin"
+                android:layout_alignLeft="@+id/btLoginLogin"
+                android:layout_alignStart="@+id/btLoginLogin"/>
+
+        <!--<Button-->
+                <!---->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/login_register_button"-->
+                <!--android:id="@+id/btLoginRegister"-->
+                <!--android:layout_below="@+id/btLoginLogin"-->
+                <!--android:layout_alignLeft="@+id/btLoginLogin"-->
+                <!--android:layout_alignStart="@+id/btLoginLogin"/>-->
+
+    </RelativeLayout>
+
+</LinearLayout>
