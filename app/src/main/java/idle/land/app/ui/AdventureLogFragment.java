@@ -22,6 +22,11 @@ import java.util.List;
 
 public class AdventureLogFragment extends ListFragment {
 
+    public static AdventureLogFragment newInstance()
+    {
+        return new AdventureLogFragment();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return super.onCreateView(inflater, container, savedInstanceState);

@@ -2,6 +2,7 @@ package idle.land.app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.squareup.otto.Subscribe;
+import com.viewpagerindicator.TitlePageIndicator;
 import idle.land.app.R;
 import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.api.HeartbeatEvent;
@@ -23,11 +25,19 @@ public class MainActivity extends ActionBarActivity {
     @InjectView(R.id.heartbeatTicker)
     HeartbeatTicker mHeartbeatTicker;
 
+    @InjectView(R.id.viewPagerIndicator)
+    TitlePageIndicator mTitlePagerIndicator;
+
+    @InjectView(R.id.viewPager)
+    ViewPager mViewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         ButterKnife.inject(this);
+        mViewPager.setAdapter(new MainViewPagerAdapter(this, getSupportFragmentManager()));
+        mTitlePagerIndicator.setViewPager(mViewPager);
     }
 
     @Override
