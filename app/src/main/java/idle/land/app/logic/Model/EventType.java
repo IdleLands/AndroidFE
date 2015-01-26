@@ -1,72 +1,72 @@
 package idle.land.app.logic.Model;
 
 import com.google.gson.annotations.SerializedName;
-import com.joanzapata.android.iconify.Iconify;
+import idle.land.app.R;
 
 /**
  * Type for {@see Event}
  */
 public enum EventType {
     @SerializedName("item-mod")
-    ITEM_MOD(Iconify.IconValue.fa_legal),
+    ITEM_MOD(R.drawable.legal),
 
     @SerializedName("item-find")
-    ITEM_FIND(Iconify.IconValue.fa_gavel), // TODO correct icon
+    ITEM_FIND(R.drawable.gavel), // TODO correct icon
 
     @SerializedName("item-enchant")
-    ITEM_ENCHANT(Iconify.IconValue.fa_magic),
+    ITEM_ENCHANT(R.drawable.magic),
 
     @SerializedName("item-switcheroo")
-    ITEM_SWITCHEROO(Iconify.IconValue.fa_magnet), // TODO correct icon
+    ITEM_SWITCHEROO(R.drawable.magnet), // TODO correct icon
 
     @SerializedName("shop")
-    SHOP(Iconify.IconValue.fa_money),
+    SHOP(R.drawable.money),
 
     @SerializedName("shop-fail")
-    SHOP_FAIL(Iconify.IconValue.fa_money),
+    SHOP_FAIL(R.drawable.money),
 
     @SerializedName("profession")
-    PROFESSION(Iconify.IconValue.fa_child),
+    PROFESSION(R.drawable.child),
 
     @SerializedName("explore")
-    EXPLORE(Iconify.IconValue.fa_globe),
+    EXPLORE(R.drawable.globe),
 
     @SerializedName("levelup")
-    LEVELUP(Iconify.IconValue.fa_graduation_cap), // TODO correct icon
+    LEVELUP(R.drawable.graduation_cap), // TODO correct icon
 
     @SerializedName("achievement")
-    ARCHIVMENT(Iconify.IconValue.fa_shield),
+    ARCHIVMENT(R.drawable.shield),
 
     @SerializedName("party")
-    PARTY(Iconify.IconValue.fa_users),
+    PARTY(R.drawable.users),
 
     @SerializedName("exp")
-    EXP(Iconify.IconValue.fa_support),
+    EXP(R.drawable.support),
 
     @SerializedName("gold")
-    GOLD(Iconify.IconValue.fa_money),
+    GOLD(R.drawable.money),
 
     @SerializedName("guild")
-    GUILD(Iconify.IconValue.fa_sitemap),
+    GUILD(R.drawable.sitemap),
 
     @SerializedName("combat")
-    COMBAT(Iconify.IconValue.fa_newspaper_o),
+    COMBAT(R.drawable.paper_plane_o),
 
     @SerializedName("event")
-    EVENT(Iconify.IconValue.fa_gift),
+    EVENT(R.drawable.gift),
 
     @SerializedName("pet")
-    PET(Iconify.IconValue.fa_paw);
+    PET(R.drawable.paw);
 
-    public Iconify.IconValue mIconVal;
+    public int mIconRes;
 
-    EventType(Iconify.IconValue val)
+    EventType(int resId)
     {
-        mIconVal = val;
+        mIconRes = resId;
     }
 
-    public Iconify.IconValue getIconValue()
+    public int getIconResId()
     {
-        return mIconVal;
+        return mIconRes;
     }
 }

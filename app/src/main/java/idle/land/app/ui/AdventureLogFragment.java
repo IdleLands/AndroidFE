@@ -10,7 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.joanzapata.android.iconify.IconDrawable;
 import com.squareup.otto.Subscribe;
 import idle.land.app.R;
 import idle.land.app.logic.BusProvider;
@@ -146,7 +145,7 @@ public class AdventureLogFragment extends ListFragment {
             Event event = (Event) getItem(position);
             holder.tvMessage.setText(event.getMessage());
             holder.tvTime.setText(DateUtils.getRelativeDateTimeString(getActivity(), event.getCreatedAt().getTime(), DateUtils.SECOND_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, 0));
-            holder.ivIcon.setImageDrawable(new IconDrawable(getActivity(), event.getType().getIconValue()));
+            holder.ivIcon.setImageDrawable(getResources().getDrawable(event.getType().getIconResId()));
             return convertView;
         }
     }

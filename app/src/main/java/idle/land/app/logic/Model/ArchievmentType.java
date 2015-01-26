@@ -1,41 +1,41 @@
 package idle.land.app.logic.Model;
 
 import com.google.gson.annotations.SerializedName;
-import com.joanzapata.android.iconify.Iconify;
+import idle.land.app.R;
 
 public enum ArchievmentType {
 
     @SerializedName("class")
-    CLASS(Iconify.IconValue.fa_child),
+    CLASS(R.drawable.child),
 
     @SerializedName("event")
-    EVENT(Iconify.IconValue.fa_info),
+    EVENT(R.drawable.info),
 
     @SerializedName("combat")
-    COMBAT(Iconify.IconValue.fa_magic),
+    COMBAT(R.drawable.magic),
 
     @SerializedName("special")
-    SPECIAL(Iconify.IconValue.fa_gift),
+    SPECIAL(R.drawable.gift),
 
     @SerializedName("personality")
-    PERSONALITY(Iconify.IconValue.fa_group),
+    PERSONALITY(R.drawable.group),
 
     @SerializedName("exploration")
-    EXPLORATION(Iconify.IconValue.fa_compass),
+    EXPLORATION(R.drawable.compass),
 
     @SerializedName("progress")
-    PROGRESS(Iconify.IconValue.fa_signal);
+    PROGRESS(R.drawable.signal);
 
-    public Iconify.IconValue mIconVal;
+    public int iconResId;
 
-    ArchievmentType(Iconify.IconValue val)
+    ArchievmentType(int resId)
     {
-        mIconVal = val;
+        iconResId = resId;
     }
 
-    public Iconify.IconValue getIconValue()
+    public int getIconResId()
     {
-        return mIconVal;
+        return iconResId;
     }
 
 }
