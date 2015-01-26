@@ -17,6 +17,7 @@ import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.Model.Player;
 import idle.land.app.logic.api.HeartbeatEvent;
 import idle.land.app.logic.api.HeartbeatService;
+import idle.land.app.logic.api.NotificationManager;
 import idle.land.app.ui.views.HeartbeatTicker;
 
 public class MainActivity extends ActionBarActivity {
@@ -46,6 +47,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         BusProvider.getInstance().register(this);
+        NotificationManager.getInstance().setActive(true);
     }
 
     /**
@@ -94,6 +96,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onPause() {
         BusProvider.getInstance().unregister(this);
         mHeartbeatTicker.stop();
+        NotificationManager.getInstance().setActive(false);
         super.onPause();
     }
 
