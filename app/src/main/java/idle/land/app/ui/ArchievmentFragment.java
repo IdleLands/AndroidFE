@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.*;
 import android.widget.*;
-import com.joanzapata.android.iconify.IconDrawable;
 import com.squareup.otto.Subscribe;
 import idle.land.app.R;
 import idle.land.app.logic.BusProvider;
@@ -200,7 +199,7 @@ public class ArchievmentFragment extends ListFragment {
             holder.tvTitle.setText(a.getName());
             holder.tvMessage.setText(a.getDesc());
             holder.tvReward.setText(a.getReward());
-            holder.ivIcon.setImageDrawable(new IconDrawable(getActivity(), a.getType().getIconValue()));
+            holder.ivIcon.setImageDrawable(getResources().getDrawable(a.getType().getIconResId()));
 
             return convertView;
         }

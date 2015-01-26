@@ -9,13 +9,13 @@
                  android:icon="@drawable/ic_launcher"
                  android:theme="@style/AppTheme"
                  android:name=".IdleLandApplication">
-        <activity android:name=".ui.LoginActivity">
+        <activity android:name=".ui.LoginActivity"  android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.MainActivity" android:launchMode="singleTop" />
 
         <service android:name=".logic.api.HeartbeatService" android:exported="false" />
 

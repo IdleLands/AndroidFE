@@ -1,20 +1,15 @@
 package idle.land.app.logic.api;
 
-import android.app.Notification;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import com.squareup.otto.Produce;
-import idle.land.app.R;
 import idle.land.app.logic.AccountManager;
 import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.Logger;
 import idle.land.app.logic.Model.Player;
-import idle.land.app.ui.MainActivity;
 
 /**
  * Service to perform turns every few seconds and receive updated player information
@@ -40,6 +35,7 @@ public class HeartbeatService extends Service implements Runnable {
 
     private AccountManager mAccountManager;
     private ApiConnection mApiConnection;
+    private NotificationManager mNotificationManager;
 
     /**
      * the last event the service sent out
@@ -55,38 +51,12 @@ public class HeartbeatService extends Service implements Runnable {
         BusProvider.getInstance().register(this);
         mAccountManager = AccountManager.getInstance();
         mApiConnection = new ApiConnection();
+        mNotificationManager = NotificationManager.getInstance();
         mHandler = new Handler();
         cb = new ServiceHeartbeatCallback();
 
         // start in forground. This will run until user shuts it down
-        startForeground(NOTIFICATION_ID, buildForegroundNotification());
-    }
-
-    /**
-     * Builds the statusbar notification
-     * @return
-     */
-    Notification buildForegroundNotification()
-    {
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent launchIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-        Intent stopIntent = new Intent(this, HeartbeatService.class);
-        stopIntent.putExtra(EXTRA_STOP, true);
-        PendingIntent stopPendingIntent = PendingIntent.getService(this, 0, stopIntent, 0);
-
-        Notification.Builder builder = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher) // TODO replace with a better icon
-                .setContentTitle(getString(R.string.app_name))
-                .setContentText(getString(R.string.notification_no_news));
-
-        // Buttons only on sdk level >= 16
-        if(Build.VERSION.SDK_INT >= 16) {
-            builder.addAction(R.drawable.notification_close, getString(R.string.notification_action_stop), stopPendingIntent);
-            builder.addAction(R.drawable.notification_more, getString(R.string.notification_action_more), launchIntent);
-        }
-
-        builder.setContentIntent(launchIntent);
-        return builder.getNotification();
+        startForeground(NOTIFICATION_ID, mNotificationManager.buildServiceStatusNotification(this));
     }
 
     @Override
@@ -182,6 +152,8 @@ public class HeartbeatService extends Service implements Runnable {
             lastEvent.player = player;
         }
         BusProvider.getInstance().post(lastEvent);
+        if(player != null)
+            mNotificationManager.postEventNotification(this, player.getRecentEvents());
     }
 
     @Override
@@ -199,7 +171,6 @@ public class HeartbeatService extends Service implements Runnable {
         public void onHeartbeatSuccess(Player player) {
             // post heartbeat result
             postEvent(HeartbeatEvent.EventType.HEARTBEAT, player);
-
             // start next heartbeat
             startDelayedHeartbeat();
         }

@@ -52,7 +52,7 @@ public abstract class HeartbeatCallback implements Callback<JsonObject> {
 
     @Override
     public void success(JsonObject jsonObject, Response response) {
-        if(jsonObject.get("isSuccess").getAsBoolean() || (jsonObject.get("code").getAsInt() == 100 && response.getUrl().contains("turn") ))
+        if(jsonObject.get("isSuccess").getAsBoolean() || (jsonObject.get("code").getAsInt() == 100 && jsonObject.has("player")))
         {
             Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateDeserializer()).create();
             Player player = gson.fromJson(jsonObject.get("player"), Player.class);
