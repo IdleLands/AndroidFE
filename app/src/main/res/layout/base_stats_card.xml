@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:shrinkColumns="*"
+             android:stretchColumns="*">
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivHeart"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/heart"
+                    android:layout_alignBottom="@+id/tvHealt"/>
+
+            <TextView
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_toRightOf="@id/ivHeart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="500\n\t/1000"
+                    android:id="@+id/tvHealt"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivMana"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/magic"
+                    android:layout_alignBottom="@+id/tvMana"/>
+
+            <TextView
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_toRightOf="@id/ivMana"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:id="@+id/tvMana"
+                    android:text="500\n\t/1000"/>
+        </RelativeLayout>
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivSpecial"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/asterisk"
+                    android:layout_alignBottom="@+id/tvSpecial"/>
+
+            <TextView
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:layout_toRightOf="@id/ivSpecial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:id="@+id/tvSpecial"
+                    android:text="500\n\t/1000"/>
+        </RelativeLayout>
+
+    </TableRow>
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:text="Health"
+                android:id="@+id/textView7"
+                android:layout_gravity="center"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:text="Mana"
+                android:id="@+id/textView8"
+                android:layout_gravity="center"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:text="Special"
+                android:id="@+id/textView9"
+                android:layout_gravity="center"/>
+
+    </TableRow>
+</TableLayout>

@@ -6,11 +6,16 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="TickerStyle">@style/HeartbeatTicker</item>
+        <item name="ExperienceBarStyle">@style/ExperienceBar</item>
         <item name="vpiTitlePageIndicatorStyle">@style/ViewPagerIndicatorStyle</item>
     </style>
 
     <style name="HeartbeatTicker" parent="@style/Base.Widget.AppCompat.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/turn_ticker_style</item>
+    </style>
+
+    <style name="ExperienceBar" parent="@style/Base.Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/experience_bar</item>
     </style>
 
     <style name="ViewPagerIndicatorStyle">

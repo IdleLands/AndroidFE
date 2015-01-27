@@ -1,36 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="4dp">
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:text="name"
-            android:id="@+id/tvName"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
+            android:text="Danijoo"
+            android:id="@+id/tvName"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:text="The ClassName"
+            android:text="The Level 16 Fighter"
             android:id="@+id/tvTitle"
             android:layout_below="@+id/tvName"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
 
+
+    <TextView android:layout_marginTop="8dp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+              android:text="0"
+              android:id="@+id/tvGold"
+              android:layout_below="@+id/tvTitle"
+              android:layout_toRightOf="@+id/imageView"
+              android:layout_toEndOf="@+id/imageView"/>
+
+    <TextView android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="Position (Position2)"
+            android:id="@+id/tvPosition"
+            android:layout_below="@+id/tvGold"
+            android:layout_alignLeft="@+id/tvGold"
+            android:layout_alignStart="@+id/tvGold"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="Party"
+            android:id="@+id/tvParty"
+            android:layout_below="@+id/tvPosition"
+            android:layout_alignLeft="@+id/tvPosition"
+            android:layout_alignStart="@+id/tvPosition"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="Guild"
+            android:id="@+id/tvGuild"
+            android:layout_below="@+id/tvParty"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_toEndOf="@+id/imageView2"/>
+
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:text="Small Text"
-            android:id="@+id/tvLevel"
-            android:layout_above="@+id/tvTitle"
-            android:layout_toRightOf="@+id/tvName"
-            android:layout_toEndOf="@+id/tvName"/>
+            android:text="age"
+            android:id="@+id/tvAge"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+
+    <ProgressBar
+            android:max="100"
+            android:progress="36"
+            android:id="@+id/pbExperience"
+            style="@style/ExperienceBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView"
+            android:layout_alignRight="@+id/tvAge"
+            android:layout_alignEnd="@+id/tvAge"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+    <TextView
+            android:layout_marginTop="8dp"
+            android:textColor="@android:color/white"
+            android:text="@string/experience_bar_text"
+            android:paddingLeft="@dimen/default_margin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_below="@+id/tvGuild"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+    <TextView
+            android:textColor="@android:color/white"
+            android:id="@+id/tvExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:text="0"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_centerHorizontal="true"/>
+
+    <ImageView
+            android:layout_marginTop="8dp"
+            android:src="@drawable/money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/tvGold"/>
+
+    <ImageView
+            android:layout_marginTop="8dp"
+            android:src="@drawable/globe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_below="@+id/tvGold"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/tvPosition"/>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:src="@drawable/group"
+            android:layout_below="@+id/imageView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/tvParty"/>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView3"
+            android:src="@drawable/sitemap"
+            android:layout_below="@+id/tvParty"
+            android:layout_toLeftOf="@+id/tvParty"
+            android:layout_toStartOf="@+id/tvParty"
+            android:layout_alignBottom="@+id/tvGuild"/>
+
 
 </RelativeLayout>

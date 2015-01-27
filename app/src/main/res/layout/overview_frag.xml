@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:padding="@dimen/default_margin"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <idle.land.app.ui.views.BaseInformationCard
+            android:id="@+id/baseInformationCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.MainActivity"
-            android:padding="@dimen/default_margin">
+            android:layout_height="wrap_content"/>
 
-    <LinearLayout
-            android:orientation="vertical"
+    <idle.land.app.ui.views.BaseStatsCard
+            android:layout_marginTop="@dimen/default_margin"
+            android:id="@+id/baseStatsCard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"/>
+
+    <idle.land.app.ui.views.ExtendedStatsCard
+            android:id="@+id/extendedStatsCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
-        <view
-                android:id="@+id/baseInformationCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                class="idle.land.app.ui.views.BaseInformationCard"/>
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

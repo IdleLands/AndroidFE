@@ -23,4 +23,10 @@
     <string name="menu_sort_by_type">Sort by type</string>
     <string name="main_activity_tab_overview">Overview</string>
     <string name="base_information_title">The %1$s</string>
+    <string name="experience_bar_text">Experience</string>
+    <string name="overview_title">Level %1$s, %2$s</string>
+    <string name="overview_position">%1$s (%2$s)</string>
+    <string name="overview_age">Created: %1$s</string>
+    <string name="overview_experience_progress">%1$s/%2$s (%3$s%%)</string>
+    <string name="overview_no_party">No party</string>
 </resources>

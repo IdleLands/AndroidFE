@@ -10,6 +10,8 @@ import idle.land.app.R;
 import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.api.HeartbeatEvent;
 import idle.land.app.ui.views.BaseInformationCard;
+import idle.land.app.ui.views.BaseStatsCard;
+import idle.land.app.ui.views.ExtendedStatsCard;
 
 public class OverviewFragment extends Fragment {
 
@@ -19,11 +21,15 @@ public class OverviewFragment extends Fragment {
     }
 
     BaseInformationCard mBaseInformationCard;
+    BaseStatsCard mBaseStatsCard;
+    ExtendedStatsCard mExtendedStatsCard;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.overview_frag, container, false);
         mBaseInformationCard = (BaseInformationCard) v.findViewById(R.id.baseInformationCard);
+        mBaseStatsCard = (BaseStatsCard) v.findViewById(R.id.baseStatsCard);
+        mExtendedStatsCard = (ExtendedStatsCard) v.findViewById(R.id.extendedStatsCard);
         return v;
     }
 
@@ -33,6 +39,8 @@ public class OverviewFragment extends Fragment {
         if(event.player != null)
         {
             mBaseInformationCard.setPlayer(event.player);
+            mBaseStatsCard.setPlayer(event.player);
+            mExtendedStatsCard.setPlayer(event.player);
         }
     }
 

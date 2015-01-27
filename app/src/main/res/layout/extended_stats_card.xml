@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:stretchColumns="*"
+        android:shrinkColumns="*"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivStr"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/gavel"
+                    android:layout_alignBottom="@+id/tvStr"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivStr"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvStr"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivDex"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/crosshairs"
+                    android:layout_alignBottom="@+id/tvDex"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivDex"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvDex"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivAgi"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/man459"
+                    android:layout_alignBottom="@+id/tvAgi"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivAgi"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvAgi"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivCon"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/heart"
+                    android:layout_alignBottom="@+id/tvCon"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivCon"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvCon"/>
+        </RelativeLayout>
+    </TableRow>
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivInt"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/graduation_cap"
+                    android:layout_alignBottom="@+id/tvInt"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivInt"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvInt"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivWis"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/book"
+                    android:layout_alignBottom="@+id/tvWis"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivWis"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvWis"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivLuck"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/moon_o"
+                    android:layout_alignBottom="@+id/tvLuck"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivLuck"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvLuck"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivFire"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/fire"
+                    android:layout_alignBottom="@+id/tvFire"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivFire"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvFire"/>
+        </RelativeLayout>
+    </TableRow>
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivWater"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/tint"
+                    android:layout_alignBottom="@+id/tvWater"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivWater"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvWater"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivThunder"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/bolt"
+                    android:layout_alignBottom="@+id/tvThunder"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivThunder"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvThunder"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivEarth"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/leaf"
+                    android:layout_alignBottom="@+id/tvEarth"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivEarth"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvEarth"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center">
+
+            <ImageView
+                    android:id="@+id/ivIce"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/sun_o"
+                    android:layout_alignBottom="@+id/tvIce"/>
+
+            <TextView
+                    android:layout_toRightOf="@+id/ivIce"
+                    android:layout_marginRight="@dimen/default_margin"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:text="0"
+                    android:id="@+id/tvIce"/>
+        </RelativeLayout>
+    </TableRow>
+</TableLayout>
