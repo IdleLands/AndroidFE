@@ -129,6 +129,11 @@ public class AdventureLogFragment extends ListFragment {
         }
 
         @Override
+        public boolean isEnabled(int position) {
+            return false;
+        }
+
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
             if(convertView == null)
