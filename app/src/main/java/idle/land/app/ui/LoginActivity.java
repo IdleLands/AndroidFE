@@ -17,6 +17,7 @@ import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.Preferences;
 import idle.land.app.logic.api.HeartbeatEvent;
 import idle.land.app.logic.api.HeartbeatService;
+import idle.land.app.ui.dialogs.PendingLoginDialog;
 
 public class LoginActivity extends ActionBarActivity implements CompoundButton.OnCheckedChangeListener {
 
@@ -105,6 +106,7 @@ public class LoginActivity extends ActionBarActivity implements CompoundButton.O
         {
             mAccountManager.setRemember(remember);
             mAccountManager.updateToken(null); // reset token on login
+            new PendingLoginDialog().show(getSupportFragmentManager(), PendingLoginDialog.TAG);
             startService(new Intent(LoginActivity.this, HeartbeatService.class));
         }
         else

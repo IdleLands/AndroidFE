@@ -29,4 +29,5 @@
     <string name="overview_age">Created: %1$s</string>
     <string name="overview_experience_progress">%1$s/%2$s (%3$s%%)</string>
     <string name="overview_no_party">No party</string>
+    <string name="login_dialog_message">Logging in ...</string>
 </resources>
