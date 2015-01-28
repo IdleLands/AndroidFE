@@ -34,4 +34,8 @@
     <string name="login_error_wrong_username">Username does not exist.</string>
     <string name="login_error_unknown">Something went wrong.</string>
     <string name="login_error_no_username_or_no_password">Please enter a user name and password.</string>
+    <string name="register_dialog_title">Register a new character</string>
+    <string name="register_dialog_positive_button">Register</string>
+    <string name="register_dialog_negative_button">Abort</string>
+    <string name="register_dialog_error_passwords_dont_match">Passwords don\'t match!</string>
 </resources>

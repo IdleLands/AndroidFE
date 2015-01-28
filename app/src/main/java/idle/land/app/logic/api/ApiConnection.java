@@ -9,6 +9,7 @@ import retrofit.client.Response;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 
 /**
  * Connection to the REST Api
@@ -40,6 +41,11 @@ public class ApiConnection {
         service.turn(identifier, token, cb);
     }
 
+    public void register(String identifier, String name, String password, Callback<JsonObject> cb)
+    {
+        service.register(identifier, name, password, cb);
+    }
+
     /**
      * Asynchronous logout without callback
      */
@@ -67,5 +73,8 @@ public class ApiConnection {
         @POST("/player/auth/logout")
         @FormUrlEncoded
         void logout(@Field("identifier") String identifier, @Field("token") String token, Callback<JsonObject> cb);
+
+        @PUT("/player/auth/register")
+        void register(@Field("identifier") String identifier, @Field("name") String name, @Field("password") String password, Callback<JsonObject> cb);
     }
 }
