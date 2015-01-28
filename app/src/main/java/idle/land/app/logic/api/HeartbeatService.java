@@ -129,7 +129,31 @@ public class HeartbeatService extends Service implements Runnable {
 
 
     @Produce
-    public AbstractHeartbeatEvent produceStatusEvent()
+    public HeartbeatEvent produceHeartbeatEvent()
+    {
+        if(lastEvent instanceof HeartbeatEvent)
+            return (HeartbeatEvent) lastEvent;
+        return null;
+    }
+
+    @Produce
+    public ErrorEvent produceErrorEvent()
+    {
+        if(lastEvent instanceof ErrorEvent)
+            return (ErrorEvent) lastEvent;
+        return null;
+    }
+
+    @Produce
+    public LogoutEvent produceLogoutEvent()
+    {
+        if(lastEvent instanceof LogoutEvent)
+            return (LogoutEvent) lastEvent;
+        return null;
+    }
+
+    @Produce
+    public AbstractHeartbeatEvent produceAnyEvent()
     {
         return lastEvent;
     }

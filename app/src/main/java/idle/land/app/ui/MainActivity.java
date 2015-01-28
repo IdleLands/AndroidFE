@@ -17,7 +17,6 @@ import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.Model.Player;
 import idle.land.app.logic.api.HeartbeatService;
 import idle.land.app.logic.api.NotificationManager;
-import idle.land.app.logic.api.apievents.AbstractHeartbeatEvent;
 import idle.land.app.logic.api.apievents.ErrorEvent;
 import idle.land.app.logic.api.apievents.HeartbeatEvent;
 import idle.land.app.logic.api.apievents.LogoutEvent;
@@ -65,22 +64,27 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Subscribe
-    public void onHeartbeatEvent(AbstractHeartbeatEvent event)
+    public void onHeartbeatEvent(HeartbeatEvent event)
     {
-        if(event instanceof HeartbeatEvent && ((HeartbeatEvent) event).isSuccessful()) {
+        if(event.isSuccessful()) {
             mHeartbeatTicker.reset();
             onNewPlayerReceived( ((HeartbeatEvent)event).player);
-        } else if(event instanceof ErrorEvent)
-        {
-            Toast.makeText(this, getString(R.string.toast_something_went_wrong), Toast.LENGTH_LONG).show();
-            showLogin();
-        } else if(event instanceof LogoutEvent)
-        {
-            Toast.makeText(this, getString(R.string.toast_logged_out), Toast.LENGTH_SHORT).show();
-            showLogin();
         }
     }
 
+    @Subscribe
+    public void onLoggoutEvent(LogoutEvent event)
+    {
+        Toast.makeText(this, getString(R.string.toast_logged_out), Toast.LENGTH_SHORT).show();
+        showLogin();
+    }
+
+    @Subscribe
+    public void onErrorEvent(ErrorEvent event)
+    {
+        Toast.makeText(this, getString(R.string.toast_something_went_wrong), Toast.LENGTH_LONG).show();
+        showLogin();
+    }
 
 
     void onNewPlayerReceived(Player newPlayer)

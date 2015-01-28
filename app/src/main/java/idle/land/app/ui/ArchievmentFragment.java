@@ -36,10 +36,16 @@ public class ArchievmentFragment extends ListFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        String filter = null;
         if(item.getItemId() == R.id.menu_sort_by_name)
-            ((Filterable) getListView().getAdapter()).getFilter().filter("byname");
+            filter = "byname";
         else if(item.getItemId() == R.id.menu_sort_by_type)
-            ((Filterable) getListView().getAdapter()).getFilter().filter("bytype");
+            filter = "bytype";
+
+        // wow. this is really ugly
+        if(filter != null && !filter.isEmpty() && getListView() != null && getListAdapter() != null)
+            ((Filterable) getListAdapter()).getFilter().filter(filter);
+
 
         return super.onOptionsItemSelected(item);
     }
