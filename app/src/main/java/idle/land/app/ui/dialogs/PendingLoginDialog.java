@@ -17,7 +17,7 @@ public class PendingLoginDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         ProgressDialog dialog = new ProgressDialog(getActivity());
         dialog.setIndeterminate(true);
-        dialog.setMessage(.getString(R.string.login_dialog_message));
+        dialog.setMessage(getActivity().getString(R.string.login_dialog_message));
         return dialog;
     }
 
