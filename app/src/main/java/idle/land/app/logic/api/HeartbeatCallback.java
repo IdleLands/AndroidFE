@@ -17,71 +17,48 @@ import java.util.Date;
  */
 public abstract class HeartbeatCallback implements Callback<JsonObject> {
 
-    /**
-     * Relevant error types for heartbeat
-     */
-    protected enum ErrorType
-    {
-        BAD_TOKEN(-1),
-        NO_NAME_SPECIFIED(6),
-        NOT_LOGGED_IN(10),
-        CANT_AUTH_VIA_PASSWORD(11),
-        NO_PASSWORD_SET(12),
-        PLAYER_DOESNT_EXIST(13),
-        BAD_PASSWORD(14),
-        ALREADY_LOGGED_IN(15),
-        NO_PASSWORD_SPECIFIED(16),
-        TOO_MANY_TRIES(100),
-        UNKNOWN(-99);
-
-        int code;
-        ErrorType(int code)
-        {
-            this.code = code;
-        }
-
-        public static ErrorType byId(int id)
-        {
-            for(ErrorType type : ErrorType.values())
-                if(type.code == id)
-                    return type;
-            return UNKNOWN;
-        }
-
-    }
-
     @Override
     public void success(JsonObject jsonObject, Response response) {
-        if(jsonObject.get("isSuccess").getAsBoolean() || (jsonObject.get("code").getAsInt() == 100 && jsonObject.has("player")))
+        boolean success = jsonObject.get("isSuccess").getAsBoolean();
+        StatusCode code = StatusCode.byCode(jsonObject.get("code").getAsInt());
+
+        if(success)
         {
-            Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateDeserializer()).create();
-            Player player = gson.fromJson(jsonObject.get("player"), Player.class);
+            Player player = deserializePlayer(jsonObject.get("player").getAsJsonObject());
             if(response.getUrl().contains("login"))
-                onLoginSuccess(player, jsonObject.get("token").getAsString());
+                onLoginSuccess(code, player, jsonObject.get("token").getAsString());
             else
-                onHeartbeatSuccess(player);
+                onHeartbeatSuccess(code, player);
         } else
-        {
-            onError(ErrorType.byId(jsonObject.get("code").getAsInt()));
-        }
+            onError(code);
+    }
+
+    private Player deserializePlayer(JsonObject playerObject)
+    {
+        return getPlayerDeserializer().fromJson(playerObject, Player.class);
+    }
+
+    private Gson getPlayerDeserializer()
+    {
+        return new GsonBuilder().registerTypeAdapter(Date.class, new DateDeserializer()).create();
     }
 
     @Override
     public void failure(RetrofitError error) {
-        onError(ErrorType.UNKNOWN);
+        onError(StatusCode.UNKNOWN);
     }
 
     /**
      * Callback for a successful heartbeat
      * @param player new player object
      */
-    public abstract void onHeartbeatSuccess(Player player);
+    public abstract void onHeartbeatSuccess(StatusCode code, Player player);
 
     /**
      * Callback for a heartbeat error
-     * @param error
+     * @param errorCode
      */
-    public abstract void onError(ErrorType error);
+    public abstract void onError(StatusCode errorCode);
 
     /**
      * Callback for login
@@ -89,5 +66,5 @@ public abstract class HeartbeatCallback implements Callback<JsonObject> {
      * @param player new player object
      * @param token new token from REST api
      */
-    public abstract void onLoginSuccess(Player player, String token);
+    public abstract void onLoginSuccess(StatusCode code, Player player, String token);
 }

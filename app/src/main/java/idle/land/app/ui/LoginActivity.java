@@ -15,8 +15,8 @@ import idle.land.app.R;
 import idle.land.app.logic.AccountManager;
 import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.Preferences;
-import idle.land.app.logic.api.HeartbeatEvent;
 import idle.land.app.logic.api.HeartbeatService;
+import idle.land.app.logic.api.apievents.HeartbeatEvent;
 import idle.land.app.ui.dialogs.PendingLoginDialog;
 
 public class LoginActivity extends ActionBarActivity implements CompoundButton.OnCheckedChangeListener {
@@ -134,7 +134,7 @@ public class LoginActivity extends ActionBarActivity implements CompoundButton.O
     @Subscribe
     public void onHeartbeatEvent(HeartbeatEvent event)
     {
-        if(event.type == HeartbeatEvent.EventType.LOGGED_IN || event.type == HeartbeatEvent.EventType.HEARTBEAT)
+        if(event.isSuccessful())
             openMainActivity();
     }
 }

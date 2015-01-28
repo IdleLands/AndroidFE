@@ -4,12 +4,12 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import com.squareup.otto.Produce;
 import idle.land.app.logic.AccountManager;
 import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.Logger;
 import idle.land.app.logic.Model.Player;
+import idle.land.app.logic.api.apievents.*;
 
 /**
  * Service to perform turns every few seconds and receive updated player information
@@ -40,7 +40,7 @@ public class HeartbeatService extends Service implements Runnable {
     /**
      * the last event the service sent out
      */
-    private HeartbeatEvent lastEvent;
+    private AbstractHeartbeatEvent lastEvent;
     private ServiceHeartbeatCallback cb;
 
     Handler mHandler;
@@ -64,7 +64,7 @@ public class HeartbeatService extends Service implements Runnable {
         if(intent != null)
         {
             if(intent.hasExtra(EXTRA_STOP) && intent.getBooleanExtra(EXTRA_STOP, false))
-                stop();
+                logout();
             else
                 start();
         }
@@ -79,29 +79,27 @@ public class HeartbeatService extends Service implements Runnable {
         mHandler.post(this);
     }
 
-    /**
-     * stops the heartbeat and service without an error
-     */
-    private void stop() {stop(false); }
 
     /**
      * stops the heartbeat and service
-     * posts a logged out event
-     * @param error true if an error event should be posted instead of logged out
      */
-    private void stop(boolean error)
+    private void stopHeartbeat()
     {
         mHandler.removeCallbacksAndMessages(null);
+        stopSelf();
+    }
+
+    /**
+     * performs a logout and stops the service
+     * We dont care about the result of that call, so its asynchron w/o callback
+     */
+    private void logout()
+    {
+        stopHeartbeat();
         AccountManager.Account acc = mAccountManager.get();
         mApiConnection.logout(acc.getIdentifier(), acc.token);
-        if(error)
-        {
-            postEvent(HeartbeatEvent.EventType.ERROR, null);
-        } else
-        {
-            postEvent(HeartbeatEvent.EventType.LOGGED_OUT, null);
-        }
-        stopSelf();
+        postEvent(new LogoutEvent());
+
     }
 
     @Override
@@ -112,8 +110,8 @@ public class HeartbeatService extends Service implements Runnable {
     /**
      * starts a new delayed Heartbeat
      */
-    private void startDelayedHeartbeat() {
-        mHandler.postDelayed(this, HEARTBEAT_INTERVAL_MILLISECONDS);
+    private void startDelayedHeartbeat(int waitTime) {
+        mHandler.postDelayed(this, waitTime);
     }
 
     /**
@@ -131,29 +129,20 @@ public class HeartbeatService extends Service implements Runnable {
 
 
     @Produce
-    public HeartbeatEvent produceStatusEvent()
+    public AbstractHeartbeatEvent produceStatusEvent()
     {
         return lastEvent;
     }
 
     /**
-     * Posts a new event to the bus
-     * @param type of the event
-     * @param player new player object or null if the event doesnt carry any
+     * Posts a new event to the bus and notifications
      */
-    public void postEvent(HeartbeatEvent.EventType type, @Nullable Player player)
+    public void postEvent(AbstractHeartbeatEvent event)
     {
-        if(lastEvent == null)
-        {
-            lastEvent = new HeartbeatEvent(type, player);
-        } else
-        {
-            lastEvent.type = type;
-            lastEvent.player = player;
-        }
+        lastEvent = event;
         BusProvider.getInstance().post(lastEvent);
-        if(player != null)
-            mNotificationManager.postEventNotification(this, player.getRecentEvents());
+        if(event instanceof HeartbeatEvent && ((HeartbeatEvent) event).isSuccessful())
+            mNotificationManager.postEventNotification(this, ((HeartbeatEvent) event).player.getRecentEvents());
     }
 
     @Override
@@ -167,50 +156,42 @@ public class HeartbeatService extends Service implements Runnable {
      */
     public class ServiceHeartbeatCallback extends HeartbeatCallback
     {
+
         @Override
-        public void onHeartbeatSuccess(Player player) {
-            // post heartbeat result
-            postEvent(HeartbeatEvent.EventType.HEARTBEAT, player);
-            // start next heartbeat
-            startDelayedHeartbeat();
+        public void onHeartbeatSuccess(StatusCode code, Player player) {
+            // post resulting player and prepare for next heartbeat
+            postEvent(new HeartbeatEvent(code, player));
+            startDelayedHeartbeat(HEARTBEAT_INTERVAL_MILLISECONDS);
         }
 
         @Override
-        public void onLoginSuccess(Player player, String token) {
+        public void onLoginSuccess(StatusCode code, Player player, String token) {
+            // save the token and make a successful bear
             mAccountManager.updateToken(token);
-            postEvent(HeartbeatEvent.EventType.LOGGED_IN, player);
-
-            // start next heartbeat
-            startDelayedHeartbeat();
+            postEvent(new LoginEvent(code, player));
+            startDelayedHeartbeat(HEARTBEAT_INTERVAL_MILLISECONDS);
         }
 
         @Override
-        public void onError(ErrorType error) {
+        public void onError(StatusCode error) {
             Logger.warn(TAG, error.toString());
             switch (error)
             {
-                // we ignore this if we are already logged in. if not this is serious
-                case TOO_MANY_TRIES:
-                    if(mAccountManager.get().token.isEmpty())
-                        stop(true);
-                    else
-                        startDelayedHeartbeat();
+                case Onlyoneturninthetimelimit:
+                    startDelayedHeartbeat(HEARTBEAT_INTERVAL_MILLISECONDS/2);
                     break;
-
-                // those are serious
-                // let user relog manually
-                case NO_NAME_SPECIFIED:
-                case CANT_AUTH_VIA_PASSWORD:
-                case PLAYER_DOESNT_EXIST:
-                case BAD_PASSWORD:
-                case UNKNOWN:
+                case Badtoken:
                     mAccountManager.updateToken(null);
-                    stop(true);
+                    startDelayedHeartbeat(HEARTBEAT_INTERVAL_MILLISECONDS/2);
                     break;
-                // relog on the rest
+                // login issues or sth. unexpected, user should relog
+                case Badpassword:
+                case Nopasswordspecified:
+                case Playerdoesnotexist:
                 default:
                     mAccountManager.updateToken(null);
-                    startDelayedHeartbeat();
+                    postEvent(new ErrorEvent(error));
+                    stopHeartbeat();
                     break;
             }
         }

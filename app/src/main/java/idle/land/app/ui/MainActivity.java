@@ -15,9 +15,12 @@ import com.viewpagerindicator.TitlePageIndicator;
 import idle.land.app.R;
 import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.Model.Player;
-import idle.land.app.logic.api.HeartbeatEvent;
 import idle.land.app.logic.api.HeartbeatService;
 import idle.land.app.logic.api.NotificationManager;
+import idle.land.app.logic.api.apievents.AbstractHeartbeatEvent;
+import idle.land.app.logic.api.apievents.ErrorEvent;
+import idle.land.app.logic.api.apievents.HeartbeatEvent;
+import idle.land.app.logic.api.apievents.LogoutEvent;
 import idle.land.app.ui.views.HeartbeatTicker;
 
 public class MainActivity extends ActionBarActivity {
@@ -62,29 +65,25 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Subscribe
-    public void onStatusEvent(HeartbeatEvent event)
+    public void onHeartbeatEvent(AbstractHeartbeatEvent event)
     {
-        mHeartbeatTicker.reset();
-        switch(event.type)
+        if(event instanceof HeartbeatEvent && ((HeartbeatEvent) event).isSuccessful()) {
+            mHeartbeatTicker.reset();
+            onNewPlayerReceived( ((HeartbeatEvent)event).player);
+        } else if(event instanceof ErrorEvent)
         {
-            case LOGGED_IN:
-                onNewPlayerEvent(event.player);
-                break;
-            case HEARTBEAT:
-                onNewPlayerEvent(event.player);
-                break;
-            case LOGGED_OUT:
-                Toast.makeText(this, getString(R.string.toast_logged_out), Toast.LENGTH_SHORT).show();
-                showLogin();
-                break;
-            case ERROR:
-                Toast.makeText(this, getString(R.string.toast_something_went_wrong), Toast.LENGTH_LONG).show();
-                showLogin();
-                break;
+            Toast.makeText(this, getString(R.string.toast_something_went_wrong), Toast.LENGTH_LONG).show();
+            showLogin();
+        } else if(event instanceof LogoutEvent)
+        {
+            Toast.makeText(this, getString(R.string.toast_logged_out), Toast.LENGTH_SHORT).show();
+            showLogin();
         }
     }
 
-    void onNewPlayerEvent(Player newPlayer)
+
+
+    void onNewPlayerReceived(Player newPlayer)
     {
         String title = getString(R.string.main_actionbar_title);
         ActionBar actionBar = getSupportActionBar();

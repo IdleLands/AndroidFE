@@ -14,7 +14,7 @@ import com.squareup.otto.Subscribe;
 import idle.land.app.R;
 import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.Model.Event;
-import idle.land.app.logic.api.HeartbeatEvent;
+import idle.land.app.logic.api.apievents.HeartbeatEvent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,7 +57,7 @@ public class AdventureLogFragment extends ListFragment {
     @Subscribe
     public void onHeartbeatEvent(HeartbeatEvent event)
     {
-        if(event.player != null)
+        if(event.isSuccessful())
         {
             List<Event> events = event.player.getRecentEvents();
             Collections.sort(events, new Comparator<Event>() {

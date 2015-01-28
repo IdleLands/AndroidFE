@@ -7,7 +7,7 @@ import android.support.v4.app.DialogFragment;
 import com.squareup.otto.Subscribe;
 import idle.land.app.R;
 import idle.land.app.logic.BusProvider;
-import idle.land.app.logic.api.HeartbeatEvent;
+import idle.land.app.logic.api.apievents.AbstractHeartbeatEvent;
 
 public class PendingLoginDialog extends DialogFragment {
 
@@ -34,7 +34,7 @@ public class PendingLoginDialog extends DialogFragment {
     }
 
     @Subscribe
-    public void onReceiveEvent(HeartbeatEvent e)
+    public void onReceiveEvent(AbstractHeartbeatEvent e)
     {
         dismiss();
     }

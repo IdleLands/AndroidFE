@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import com.squareup.otto.Subscribe;
 import idle.land.app.R;
 import idle.land.app.logic.BusProvider;
-import idle.land.app.logic.api.HeartbeatEvent;
+import idle.land.app.logic.api.apievents.HeartbeatEvent;
 import idle.land.app.ui.views.BaseInformationCard;
 import idle.land.app.ui.views.BaseStatsCard;
 import idle.land.app.ui.views.ExtendedStatsCard;
@@ -36,7 +36,7 @@ public class OverviewFragment extends Fragment {
     @Subscribe
     public void onNewHeartbeatEvent(HeartbeatEvent event)
     {
-        if(event.player != null)
+        if(event.isSuccessful())
         {
             mBaseInformationCard.setPlayer(event.player);
             mBaseStatsCard.setPlayer(event.player);
