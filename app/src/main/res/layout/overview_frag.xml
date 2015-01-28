@@ -13,7 +13,6 @@
             android:layout_height="wrap_content"/>
 
     <idle.land.app.ui.views.BaseStatsCard
-            android:layout_marginTop="@dimen/default_margin"
             android:id="@+id/baseStatsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

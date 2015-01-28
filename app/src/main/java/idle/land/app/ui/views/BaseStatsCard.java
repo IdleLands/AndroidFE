@@ -2,7 +2,6 @@ package idle.land.app.ui.views;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.support.v7.widget.CardView;
 import android.text.Html;
@@ -36,7 +35,7 @@ public class BaseStatsCard extends CardView {
     TextView tvSpecial;
 
     public BaseStatsCard(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        super(context, attrs, R.attr.CardViewStyle);
         LayoutInflater.from(getContext()).inflate(R.layout.base_stats_card, this, true);
         ButterKnife.inject(this, this);
         ivHealth.setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP);

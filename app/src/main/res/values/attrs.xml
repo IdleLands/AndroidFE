@@ -2,4 +2,5 @@
 <resources>
     <attr name="TickerStyle" format="reference" />
     <attr name="ExperienceBarStyle" format="reference" />
+    <attr name="CardViewStyle" format="reference" />
 </resources>

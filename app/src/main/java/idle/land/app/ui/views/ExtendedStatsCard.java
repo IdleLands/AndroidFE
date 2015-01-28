@@ -49,7 +49,7 @@ public class ExtendedStatsCard extends CardView {
     TextView tvIce;
 
     public ExtendedStatsCard(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        super(context, attrs, R.attr.CardViewStyle);
         LayoutInflater.from(getContext()).inflate(R.layout.extended_stats_card, this, true);
         ButterKnife.inject(this, this);
     }

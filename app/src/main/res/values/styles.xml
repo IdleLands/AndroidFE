@@ -8,6 +8,7 @@
         <item name="TickerStyle">@style/HeartbeatTicker</item>
         <item name="ExperienceBarStyle">@style/ExperienceBar</item>
         <item name="vpiTitlePageIndicatorStyle">@style/ViewPagerIndicatorStyle</item>
+        <item name="CardViewStyle">@style/CardViewStyle</item>
     </style>
 
     <style name="HeartbeatTicker" parent="@style/Base.Widget.AppCompat.ProgressBar.Horizontal">
@@ -23,6 +24,11 @@
         <item name="selectedColor">@android:color/white</item>
         <item name="footerColor">@color/accent</item>
         <item name="footerLineHeight">0dp</item>
+    </style>
+
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardPreventCornerOverlap">true</item>
     </style>
 
 </resources>

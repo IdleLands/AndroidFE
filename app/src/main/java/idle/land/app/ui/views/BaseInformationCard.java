@@ -13,8 +13,6 @@ import idle.land.app.R;
 import idle.land.app.logic.Model.Player;
 import idle.land.app.logic.Model.ValuePair;
 
-import java.text.DecimalFormat;
-
 public class BaseInformationCard extends CardView {
 
     @InjectView(R.id.tvName)
@@ -45,7 +43,7 @@ public class BaseInformationCard extends CardView {
     TextView tvGold;
 
     public BaseInformationCard(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        super(context, attrs, R.attr.CardViewStyle);
         LayoutInflater.from(getContext()).inflate(R.layout.base_information_card, this, true);
         ButterKnife.inject(this, this);
     }
