@@ -14,11 +14,7 @@ import com.squareup.otto.Subscribe;
 import idle.land.app.R;
 import idle.land.app.logic.AccountManager;
 import idle.land.app.logic.BusProvider;
-import idle.land.app.logic.Logger;
-import idle.land.app.logic.Model.Player;
 import idle.land.app.logic.Preferences;
-import idle.land.app.logic.api.ApiConnection;
-import idle.land.app.logic.api.HeartbeatCallback;
 import idle.land.app.logic.api.HeartbeatEvent;
 import idle.land.app.logic.api.HeartbeatService;
 
@@ -106,25 +102,11 @@ public class LoginActivity extends ActionBarActivity implements CompoundButton.O
 
         // update account information und start the login process
         if(mAccountManager.update(username, appName, password))
-            new ApiConnection().login(mAccountManager.get().getIdentifier(), mAccountManager.get().password, new HeartbeatCallback() {
-                @Override
-                public void onHeartbeatSuccess(Player player) {}
-
-                @Override
-                public void onError(HeartbeatCallback.ErrorType error) {
-                    // TODO give detailed error messages
-                    Logger.debug(TAG, "Failed to login. " + error.toString());
-                }
-
-                @Override
-                public void onLoginSuccess(Player player, String token) {
-                    mAccountManager.setRemember(remember);
-                    mAccountManager.updateToken(token);
-                    BusProvider.getInstance().post(new HeartbeatEvent(HeartbeatEvent.EventType.LOGGED_IN, player));
-                    startService(new Intent(LoginActivity.this, HeartbeatService.class));
-                    openMainActivity();
-                }
-            });
+        {
+            mAccountManager.setRemember(remember);
+            mAccountManager.updateToken(null); // reset token on login
+            startService(new Intent(LoginActivity.this, HeartbeatService.class));
+        }
         else
             Toast.makeText(this, "Invalid Credentials. TODO: Reason", Toast.LENGTH_SHORT).show();
     }
