@@ -19,7 +19,6 @@ import idle.land.app.logic.api.HeartbeatService;
 import idle.land.app.logic.api.apievents.ErrorEvent;
 import idle.land.app.logic.api.apievents.HeartbeatEvent;
 import idle.land.app.ui.dialogs.PendingLoginDialog;
-import idle.land.app.ui.dialogs.RegisterDialogFragment;
 
 public class LoginActivity extends ActionBarActivity implements CompoundButton.OnCheckedChangeListener {
 
@@ -74,8 +73,7 @@ public class LoginActivity extends ActionBarActivity implements CompoundButton.O
     @OnClick(R.id.btLoginRegister)
     public void onRegisterButtonClick()
     {
-        if(getSupportFragmentManager().findFragmentByTag(RegisterDialogFragment.TAG) == null)
-            new RegisterDialogFragment().show(getSupportFragmentManager(), RegisterDialogFragment.TAG);
+        Toast.makeText(this, "Not implemented.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
