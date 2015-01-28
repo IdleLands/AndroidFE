@@ -30,4 +30,8 @@
     <string name="overview_experience_progress">%1$s/%2$s (%3$s%%)</string>
     <string name="overview_no_party">No party</string>
     <string name="login_dialog_message">Logging in ...</string>
+    <string name="login_error_wrong_password">Password is wrong.</string>
+    <string name="login_error_wrong_username">Username does not exist.</string>
+    <string name="login_error_unknown">Something went wrong.</string>
+    <string name="login_error_no_username_or_no_password">Please enter a user name and password.</string>
 </resources>

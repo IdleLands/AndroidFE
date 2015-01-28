@@ -16,6 +16,7 @@ import idle.land.app.logic.AccountManager;
 import idle.land.app.logic.BusProvider;
 import idle.land.app.logic.Preferences;
 import idle.land.app.logic.api.HeartbeatService;
+import idle.land.app.logic.api.apievents.ErrorEvent;
 import idle.land.app.logic.api.apievents.HeartbeatEvent;
 import idle.land.app.ui.dialogs.PendingLoginDialog;
 
@@ -110,7 +111,7 @@ public class LoginActivity extends ActionBarActivity implements CompoundButton.O
             startService(new Intent(LoginActivity.this, HeartbeatService.class));
         }
         else
-            Toast.makeText(this, "Invalid Credentials. TODO: Reason", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.login_error_no_username_or_no_password), Toast.LENGTH_SHORT).show();
     }
 
     private void openMainActivity()
@@ -136,5 +137,26 @@ public class LoginActivity extends ActionBarActivity implements CompoundButton.O
     {
         if(event.isSuccessful())
             openMainActivity();
+    }
+
+    @Subscribe
+    public void onErrorEvent(ErrorEvent e)
+    {
+        switch(e.code)
+        {
+            case Badpassword:
+            case Nopasswordspecified:
+                Toast.makeText(this, getString(R.string.login_error_wrong_password), Toast.LENGTH_SHORT).show();
+                break;
+            case Playerdoesnotexist:
+            case Playerdoesntexist:
+                Toast.makeText(this, getString(R.string.login_error_wrong_username), Toast.LENGTH_SHORT).show();
+                break;
+            case Onlyoneturninthetimelimit:
+            case Badtoken:
+            default:
+                Toast.makeText(this, getString(R.string.login_error_unknown), Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }
