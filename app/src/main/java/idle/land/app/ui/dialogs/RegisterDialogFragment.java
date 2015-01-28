@@ -10,13 +10,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.google.gson.JsonObject;
 import idle.land.app.R;
 import idle.land.app.logic.Logger;
-import idle.land.app.logic.api.ApiConnection;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class RegisterDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
@@ -68,22 +63,23 @@ public class RegisterDialogFragment extends DialogFragment implements DialogInte
         Logger.debug(TAG, String.format("Registering %1$s with password %2$s", user, password));
         String appIdentifier = getActivity().getString(R.string.app_ident);
         String identifier = appIdentifier + "#" + user;
-        new ApiConnection().register(identifier, user, password, new Callback<JsonObject>() {
-            @Override
-            public void success(JsonObject jsonObject, Response response) {
-                if(jsonObject.has("isSuccess") && jsonObject.get("isSuccess").getAsBoolean())
-                {
-                    // Successful registered.
-                } else
-                {
-                    // registration failed
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-            }
-        });
+        // TODO implement
+//        new ApiConnection().register(identifier, user, password, new Callback<JsonObject>() {
+//            @Override
+//            public void success(JsonObject jsonObject, Response response) {
+//                if(jsonObject.has("isSuccess") && jsonObject.get("isSuccess").getAsBoolean())
+//                {
+//                    // Successful registered.
+//                } else
+//                {
+//                    // registration failed
+//                }
+//            }
+//
+//            @Override
+//            public void failure(RetrofitError error) {
+//
+//            }
+//        });
     }
 }
