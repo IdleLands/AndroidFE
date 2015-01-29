@@ -33,6 +33,7 @@ public class Player {
     List<Archievment> achievements;
     HashMap<String, Double> _baseStats;
     List<Collectible> collectibles;
+    List<Equipable> equipment;
 
     public HashMap<String, Double> getBaseStats() {
         return _baseStats;
@@ -109,5 +110,9 @@ public class Player {
 
     public List<Collectible> getCollectibles() {
         return collectibles;
+    }
+
+    public List<Equipable> getEquipment() {
+        return equipment;
     }
 }
