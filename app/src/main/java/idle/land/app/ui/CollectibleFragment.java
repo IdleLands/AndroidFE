@@ -112,8 +112,8 @@ public class CollectibleFragment extends ListFragment {
 
             Collectible c = (Collectible) getItem(position);
             holder.tvName.setText(c.getName());
-            holder.tvRarity.setText(c.getRarity().substring(0,1).toUpperCase() + c.getRarity().substring(1));
-            String description = "Found %1$s in %2$s (%3$s)";
+            holder.tvRarity.setText("(" + c.getRarity().substring(0,1).toUpperCase() + c.getRarity().substring(1) + ")");
+            String description = getActivity().getString(R.string.collectible_description);
             holder.tvDescription.setText(String.format(
                     description,
                     DateUtils.getRelativeDateTimeString(getActivity(), c.getFoundAt(), DateUtils.MINUTE_IN_MILLIS, DateUtils.YEAR_IN_MILLIS, 0),
