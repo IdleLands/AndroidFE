@@ -53,3 +53,5 @@ proguard/
 
 # Log Files
 *.log
+
+idleland.keystore
