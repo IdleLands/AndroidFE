@@ -24,6 +24,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
         {
             case 0: return mContext.getString(R.string.main_activity_tab_overview);
             case 1: return mContext.getString(R.string.main_activity_tab_adventure_log);
+            case 2: return mContext.getString(R.string.main_activity_tab_collectibles);
             default: return mContext.getString(R.string.main_activity_tab_archievments);
         }
 
@@ -37,6 +38,8 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
                 return OverviewFragment.newInstance();
             case 1:
                 return AdventureLogFragment.newInstance();
+            case 2:
+                return CollectibleFragment.newInstance();
             default:
                 return ArchievmentFragment.newInstance();
         }
@@ -44,6 +47,6 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 }

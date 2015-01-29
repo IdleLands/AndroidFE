@@ -29,8 +29,10 @@ public class Player {
     String partyName;
 
     List<Event> recentEvents;
+
     List<Archievment> achievements;
     HashMap<String, Double> _baseStats;
+    List<Collectible> collectibles;
 
     public HashMap<String, Double> getBaseStats() {
         return _baseStats;
@@ -103,5 +105,9 @@ public class Player {
 
     public String getPartyName() {
         return partyName;
+    }
+
+    public List<Collectible> getCollectibles() {
+        return collectibles;
     }
 }

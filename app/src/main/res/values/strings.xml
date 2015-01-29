@@ -38,4 +38,5 @@
     <string name="register_dialog_positive_button">Register</string>
     <string name="register_dialog_negative_button">Abort</string>
     <string name="register_dialog_error_passwords_dont_match">Passwords don\'t match!</string>
+    <string name="main_activity_tab_collectibles">Collectibles</string>
 </resources>

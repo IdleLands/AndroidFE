@@ -153,6 +153,10 @@ public class AdventureLogFragment extends ListFragment {
             holder.ivIcon.setImageDrawable(getResources().getDrawable(event.getType().getIconResId()));
             return convertView;
         }
+
+
     }
+
+
 
 }
