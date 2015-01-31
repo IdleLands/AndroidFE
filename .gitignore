@@ -55,3 +55,6 @@ proguard/
 *.log
 
 idleland.keystore
+
+
+manifest-merger-release-report.txt

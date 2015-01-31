@@ -112,7 +112,7 @@ public class ArchievmentFragment extends ListFragment {
                 return false;
 
             archievments = newArchievments;
-            if(!lastSort.isEmpty())
+            if(lastSort != null && !lastSort.isEmpty())
                 getFilter().filter(lastSort);
             else
                 notifyDataSetChanged();
