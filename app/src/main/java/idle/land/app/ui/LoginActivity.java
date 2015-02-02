@@ -2,6 +2,7 @@ package idle.land.app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -41,6 +42,7 @@ public class LoginActivity extends ActionBarActivity implements CompoundButton.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         setContentView(R.layout.login_frag);
         getSupportActionBar().hide();
         ButterKnife.inject(this);

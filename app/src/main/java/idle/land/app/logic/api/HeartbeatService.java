@@ -33,6 +33,11 @@ public class HeartbeatService extends Service implements Runnable {
      */
     public static final String EXTRA_STOP = "stop";
 
+    /**
+     * intent extra to reset notifications
+     */
+    public static final String EXTRA_DISMISS_NOTIFICATION = "dismissnotification";
+
     private AccountManager mAccountManager;
     private ApiConnection mApiConnection;
     private NotificationManager mNotificationManager;
@@ -65,6 +70,8 @@ public class HeartbeatService extends Service implements Runnable {
         {
             if(intent.hasExtra(EXTRA_STOP) && intent.getBooleanExtra(EXTRA_STOP, false))
                 logout();
+            else if(intent.hasExtra(EXTRA_DISMISS_NOTIFICATION) && intent.getBooleanExtra(EXTRA_DISMISS_NOTIFICATION, false))
+                resetNotifications();
             else
                 start();
         }
@@ -79,6 +86,11 @@ public class HeartbeatService extends Service implements Runnable {
         mHandler.post(this);
     }
 
+
+    private void resetNotifications()
+    {
+        mNotificationManager.resetNotifications(this);
+    }
 
     /**
      * stops the heartbeat and service

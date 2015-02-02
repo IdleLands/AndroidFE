@@ -8,7 +8,8 @@ public class Preferences {
 
     public enum Property
     {
-        ACC_USERNAME, ACC_APPNAME, ACC_PASSWORD, ACC_AUTH_TOKEN, ACC_REMEMBER
+        ACC_USERNAME, ACC_APPNAME, ACC_PASSWORD, ACC_AUTH_TOKEN, ACC_REMEMBER,
+        NOTIFICATION_PLAY_SOUND, SERVICE_WIFI_MODE
     }
 
     SharedPreferences prefs;

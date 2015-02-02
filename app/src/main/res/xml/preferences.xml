@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+            android:key="NOTIFICATION_PLAY_SOUND"
+            android:title="Notification sound"
+            android:summary="Play sound on new events"
+            android:defaultValue="true" />
+    <CheckBoxPreference
+            android:enabled="false"
+            android:key="SERVICE_WIFI_MODE"
+            android:title="Wifi-only mode - Soon&#8482;"
+            android:summary="Only idle on wifi"
+            android:defaultValue="false" />
+
+    <Preference
+            android:enabled="false"
+            android:key="PREF_ABOUT"
+            android:title="About"
+        />
+</PreferenceScreen>

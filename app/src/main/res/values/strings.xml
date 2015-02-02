@@ -40,4 +40,6 @@
     <string name="register_dialog_error_passwords_dont_match">Passwords don\'t match!</string>
     <string name="main_activity_tab_collectibles">Collectibles</string>
     <string name="collectible_description">Found %1$s in %2$s (%3$s)</string>
+    <string name="notification_action_show">Show</string>
+    <string name="notification_action_dismiss">Dismiss</string>
 </resources>

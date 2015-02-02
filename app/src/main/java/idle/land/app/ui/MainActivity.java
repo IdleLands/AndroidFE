@@ -119,7 +119,7 @@ public class MainActivity extends ActionBarActivity {
                 startService(logoutIntent);
                 break;
             case R.id.menu_settings:
-                Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, PreferencesActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
