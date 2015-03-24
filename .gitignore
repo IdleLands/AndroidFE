@@ -13,9 +13,6 @@
 bin/
 gen/
 
-# Local configuration file (sdk path, etc)
-local.properties
-
 # Windows thumbnail db
 Thumbs.db
 
@@ -29,17 +26,12 @@ Thumbs.db
 # Android Studio
 .idea
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.
-.gradle
-build/
 
 # Intellij
 .idea/
 *.iml
 *.iws
 =======
-# Generated files
-bin/
-gen/
 
 # Gradle files
 .gradle/
